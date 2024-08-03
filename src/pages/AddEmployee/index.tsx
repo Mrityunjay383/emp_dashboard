@@ -20,6 +20,10 @@ const AddEmploy = () => {
   const [employeeFormData, setEmployeeFormData] = useState(emptyEmployeeData);
 
   const submitAddNewEmployee = async () => {
+    if (employeeFormData.name === "") {
+      return toast.error("Name is required");
+    }
+
     const reqData = {
       contact: [
         { contact_method: "EMAIL", value: employeeFormData.email },
