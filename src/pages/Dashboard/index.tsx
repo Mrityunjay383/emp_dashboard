@@ -2,6 +2,7 @@ import { deleteEmployee, getEmployeeList } from "../../service";
 import { useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const [employeeList, setEmployeeList] = useState([]);
@@ -25,6 +26,7 @@ const Dashboard = () => {
       const res = await deleteEmployee(id);
 
       if (res.status === 200) {
+        toast.success("Employee deleted successfully!!");
         fetchEmployList();
       }
     } catch (e) {

@@ -4,16 +4,20 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
+import AddEmploy from "./pages/AddEmployee";
 
 function App() {
   return (
     <div className={"flex font-poppins"}>
       <ToastContainer />
 
-      <Sidebar />
       <Router>
+        <Sidebar />
+
         <Routes>
           <Route path="/" element={<Dashboard />} />
+
+          <Route path="/add" element={<AddEmploy />} />
         </Routes>
       </Router>
     </div>

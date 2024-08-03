@@ -1,6 +1,6 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { MdCollectionsBookmark, MdSpaceDashboard } from "react-icons/md";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavItem = ({
   text,
@@ -27,8 +27,16 @@ const NavItem = ({
 };
 
 const Sidebar = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [selectedNav, setSelectedNav] = useState<string>("dashboard");
+
+  useEffect(() => {
+    if (window.location.pathname === "/add") {
+      setSelectedNav("addEmp");
+    } else {
+      setSelectedNav("dashboard");
+    }
+  }, []);
 
   return (
     <div className={"w-1/6 h-screen bg-sideBar py-4 sticky top-0 z-50"}>
@@ -45,13 +53,19 @@ const Sidebar = () => {
             text={"Dashboard"}
             icon={<MdSpaceDashboard className={"text-xl"} />}
             active={selectedNav === "dashboard"}
-            onClick={() => setSelectedNav("dashboard")}
+            onClick={() => {
+              setSelectedNav("dashboard");
+              navigate("/");
+            }}
           />
           <NavItem
             text={"Add Employee"}
             icon={<MdCollectionsBookmark className={"text-xl"} />}
             active={selectedNav === "addEmp"}
-            onClick={() => setSelectedNav("addEmp")}
+            onClick={() => {
+              setSelectedNav("addEmp");
+              navigate("/add");
+            }}
           />
         </div>
       </div>

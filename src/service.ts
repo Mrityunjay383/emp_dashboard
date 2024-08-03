@@ -33,3 +33,7 @@ export const getEmployeeList = (limit, offset) => {
 export const deleteEmployee = (id) => {
   return request("DELETE", `/${id}`);
 };
+
+export const addNewEmployee = (body) => {
+  return request("POST", ``, body);
+};
