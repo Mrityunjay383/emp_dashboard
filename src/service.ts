@@ -37,3 +37,7 @@ export const deleteEmployee = (id) => {
 export const addNewEmployee = (body) => {
   return request("POST", ``, body);
 };
+
+export const getEmployee = (id) => {
+  return request("GET", `/${id}`);
+};

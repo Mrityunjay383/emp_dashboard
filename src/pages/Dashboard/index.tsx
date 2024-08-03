@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
   const [employeeList, setEmployeeList] = useState([]);
 
   const fetchEmployList = async () => {
@@ -29,8 +32,9 @@ const Dashboard = () => {
         toast.success("Employee deleted successfully!!");
         fetchEmployList();
       }
-    } catch (e) {
-      console.log(`#2024216162148231 err`, e);
+    } catch (err) {
+      toast.error(err.response.data.message);
+      console.log(`#2024216162148231 err`, err);
     }
   };
 
@@ -62,6 +66,7 @@ const Dashboard = () => {
                   <td className="px-6 py-3">{employee.name}</td>
                   <td className="px-6 py-3">
                     <FaEye
+                      onClick={() => navigate(`/${employee._id}`)}
                       className={"text-xl cursor-pointer hover:text-blue-500"}
                     />
                   </td>
